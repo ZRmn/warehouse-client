@@ -19,10 +19,10 @@ public class ServerController
     @FXML
     void initialize()
     {
-        dto = DTO.getInstance();
-        port.setText(Integer.toString(dto.getPort()));
-        ipAddress.setText(dto.getIp());
-        clients.setItems(dto.getClientIPs());
+//        dto = DTO.getInstance();
+//        port.setText(Integer.toString(dto.getPort()));
+//        ipAddress.setText(dto.getIp());
+//        clients.setItems(dto.getClientIPs());
     }
 }
 
