@@ -14,6 +14,8 @@ import java.net.InetAddress;
 
 public class Main extends Application
 {
+    private DTO dto;
+
     public static void main(String[] args)
     {
         launch(args);
@@ -22,40 +24,39 @@ public class Main extends Application
     @Override
     public void start(Stage stage)
     {
+        dto = DTO.getInstance();
+        ApplicationContext context = new ClassPathXmlApplicationContext("/resources/app-config.xml");
+
         try
         {
-            ApplicationContext context = new ClassPathXmlApplicationContext("/resources/app-config.xml");
-
             SocketFacade socketFacade = new SocketFacade(context.getBean("host", String.class),
                     context.getBean("port", Integer.class));
 
+            dto.setSocket(socketFacade);
+        }
+        catch (IOException e)
+        {
+            System.out.println("Cannot connect to server");
+            System.exit(-1);
+        }
 
-            if (!socketFacade.isConnected())
-            {
-                return;
-            }
+        System.out.println("Successfully connected");
 
-            DTO.getInstance().setSocket(socketFacade);
-
+        try
+        {
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/resources/views/main.fxml")));
             scene.getStylesheets().add(0, "/resources/styles/style.css");
 
-            stage = new Stage();
             stage.getIcons().add(new Image("/resources/images/gear.png"));
             stage.setTitle("App");
             stage.setResizable(true);
             stage.setScene(scene);
+
             stage.setOnCloseRequest(windowEvent ->
             {
-                try
-                {
-                    DTO.getInstance().getSocket().close();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
+                dto.getSocket().disconnect();
             });
+
             stage.show();
         }
         catch (IOException e)

@@ -5,37 +5,33 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class SocketFacade
+public class SocketFacade extends Socket
 {
-    private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
 
-    public SocketFacade(String host, int port)
+    public SocketFacade(String host, int port) throws IOException
     {
+        super(host, port);
         try
         {
-            socket = new Socket(host, port);
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
+            in = new DataInputStream(this.getInputStream());
+            out = new DataOutputStream(this.getOutputStream());
         }
         catch (IOException e)
         {
-            System.out.println("Cannot connect to server");
+            e.printStackTrace();
         }
     }
 
-    public boolean isConnected()
-    {
-        return socket.isConnected();
-    }
 
-    public void close()
+    public void disconnect()
     {
+        this.makeRequest("disconnect");
+
         try
         {
-            this.makeRequest("disconnect");
-            socket.close();
+            this.close();
         }
         catch (IOException e)
         {
@@ -64,9 +60,9 @@ public class SocketFacade
             out.writeUTF(query);
             out.flush();
         }
-        catch (Exception ex)
+        catch (IOException e)
         {
-            System.out.println(ex);
+            e.printStackTrace();
         }
     }
 }
