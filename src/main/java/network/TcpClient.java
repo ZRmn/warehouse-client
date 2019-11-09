@@ -5,25 +5,36 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class SocketFacade extends Socket
+public class TcpClient
 {
+    private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
 
-    public SocketFacade(String host, int port) throws IOException
+    private String host;
+    private int port;
+
+    public TcpClient(String host, int port)
     {
-        super(host, port);
+        this.host = host;
+        this.port = port;
+    }
+
+    public void connect()
+    {
         try
         {
-            in = new DataInputStream(this.getInputStream());
-            out = new DataOutputStream(this.getOutputStream());
+            socket = new Socket(host, port);
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
+
+            this.makeRequest("connect?" + socket.getInetAddress().getHostAddress());
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
     }
-
 
     public void disconnect()
     {
@@ -31,7 +42,7 @@ public class SocketFacade extends Socket
 
         try
         {
-            this.close();
+            socket.close();
         }
         catch (IOException e)
         {
@@ -39,7 +50,7 @@ public class SocketFacade extends Socket
         }
     }
 
-    public String getResponse()
+    private String getResponse()
     {
         try
         {
@@ -53,7 +64,7 @@ public class SocketFacade extends Socket
         return null;
     }
 
-    public void makeRequest(String query)
+    private void makeRequest(String query)
     {
         try
         {

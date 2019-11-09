@@ -5,17 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import network.SocketFacade;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import network.TcpClient;
+import utils.DTO;
 
 import java.io.IOException;
 import java.net.InetAddress;
 
 public class Main extends Application
 {
-    private DTO dto;
-
     public static void main(String[] args)
     {
         launch(args);
@@ -24,15 +21,16 @@ public class Main extends Application
     @Override
     public void start(Stage stage)
     {
-        dto = DTO.getInstance();
-        ApplicationContext context = new ClassPathXmlApplicationContext("/resources/app-config.xml");
+        DTO dto = DTO.getInstance();
 
         try
         {
-            SocketFacade socketFacade = new SocketFacade(context.getBean("host", String.class),
-                    context.getBean("port", Integer.class));
+            TcpClient client = new TcpClient(InetAddress.getLocalHost().getHostAddress(),
+                    dto.getContext().getBean("port", Integer.class));
 
-            dto.setSocket(socketFacade);
+            dto.setClient(client);
+
+            client.connect();
         }
         catch (IOException e)
         {
@@ -54,7 +52,7 @@ public class Main extends Application
 
             stage.setOnCloseRequest(windowEvent ->
             {
-                dto.getSocket().disconnect();
+                dto.getClient().disconnect();
             });
 
             stage.show();
