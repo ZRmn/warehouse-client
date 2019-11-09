@@ -6,9 +6,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class DTO
 {
+    private String host;
+    private int port;
     private TcpClient client;
-    private ApplicationContext context;
-
+    private StageController stageController;
 
     private static DTO dto;
 
@@ -27,7 +28,29 @@ public class DTO
 
     private DTO()
     {
-        context = new ClassPathXmlApplicationContext("/resources/app-config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("/resources/app-config.xml");
+        host = context.getBean("host", String.class);
+        port = context.getBean("port", Integer.class);
+    }
+
+    public String getHost()
+    {
+        return host;
+    }
+
+    public void setHost(String host)
+    {
+        this.host = host;
+    }
+
+    public int getPort()
+    {
+        return port;
+    }
+
+    public void setPort(int port)
+    {
+        this.port = port;
     }
 
     public TcpClient getClient()
@@ -40,13 +63,13 @@ public class DTO
         this.client = client;
     }
 
-    public ApplicationContext getContext()
+    public StageController getStageController()
     {
-        return context;
+        return stageController;
     }
 
-    public void setContext(ApplicationContext context)
+    public void setStageController(StageController stageController)
     {
-        this.context = context;
+        this.stageController = stageController;
     }
 }

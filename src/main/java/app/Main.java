@@ -1,12 +1,10 @@
 package app;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import network.TcpClient;
 import utils.DTO;
+import utils.StageController;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -22,11 +20,12 @@ public class Main extends Application
     public void start(Stage stage)
     {
         DTO dto = DTO.getInstance();
+        dto.setStageController(StageController.getInstance());
 
         try
         {
             TcpClient client = new TcpClient(InetAddress.getLocalHost().getHostAddress(),
-                    dto.getContext().getBean("port", Integer.class));
+                    dto.getPort());
 
             dto.setClient(client);
 
@@ -40,26 +39,8 @@ public class Main extends Application
 
         System.out.println("Successfully connected");
 
-        try
-        {
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/resources/views/main.fxml")));
-            scene.getStylesheets().add(0, "/resources/styles/style.css");
-
-            stage.getIcons().add(new Image("/resources/images/gear.png"));
-            stage.setTitle("App");
-            stage.setResizable(true);
-            stage.setScene(scene);
-
-            stage.setOnCloseRequest(windowEvent ->
-            {
-                dto.getClient().disconnect();
-            });
-
-            stage.show();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        dto.getStageController().setPrimaryScene(StageController.SceneType.MAIN);
+        dto.getStageController().getPrimaryStage().setOnCloseRequest(windowEvent -> dto.getClient().disconnect());
+        dto.getStageController().showPrimary();
     }
 }
