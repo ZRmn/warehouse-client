@@ -3,6 +3,7 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -97,7 +98,7 @@ public class CheckManProductsController
     @FXML
     void onEdit()
     {
-        if (table.getSelectionModel().getSelectedItems() != null)
+        if (!table.getSelectionModel().getSelectedItems().isEmpty())
         {
             CheckManProductsAddEditController controller = new CheckManProductsAddEditController(
                     table.getSelectionModel().getSelectedItems().get(0));
@@ -112,7 +113,7 @@ public class CheckManProductsController
     @FXML
     void onDelete()
     {
-        if (table.getSelectionModel().getSelectedItems() != null)
+        if (!table.getSelectionModel().getSelectedItems().isEmpty())
         {
             List<Integer> indexes = new ArrayList<>(table.getSelectionModel().getSelectedIndices());
 
@@ -139,6 +140,7 @@ public class CheckManProductsController
         products = FXCollections.observableArrayList();
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         table.setItems(products);
+        table.setPlaceholder(new Label("Нет товаров"));
 
         idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
         codeColumn.setCellValueFactory(new PropertyValueFactory<Product, Long>("code"));

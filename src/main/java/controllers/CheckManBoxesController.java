@@ -1,14 +1,15 @@
 package controllers;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
+import models.Product;
 import utils.DTO;
 import utils.StageController;
 
@@ -29,7 +30,7 @@ public class CheckManBoxesController
     private TableColumn<Box, Integer> idColumn;
 
     @FXML
-    private TableColumn<Box, String> productColumn;
+    private TableColumn<Box, Product> productColumn;
 
     @FXML
     private TableColumn<Box, Integer> countColumn;
@@ -98,7 +99,7 @@ public class CheckManBoxesController
     @FXML
     void onEdit()
     {
-        if (table.getSelectionModel().getSelectedItems() != null)
+        if (!table.getSelectionModel().getSelectedItems().isEmpty())
         {
             CheckManBoxesAddEditController controller = new CheckManBoxesAddEditController(
                     table.getSelectionModel().getSelectedItems().get(0));
@@ -113,7 +114,7 @@ public class CheckManBoxesController
     @FXML
     void onDelete()
     {
-        if (table.getSelectionModel().getSelectedItems() != null)
+        if (!table.getSelectionModel().getSelectedItems().isEmpty())
         {
             List<Integer> indexes = new ArrayList<>(table.getSelectionModel().getSelectedIndices());
 
@@ -140,9 +141,10 @@ public class CheckManBoxesController
         boxes = FXCollections.observableArrayList();
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         table.setItems(boxes);
+        table.setPlaceholder(new Label("Нет коробок"));
 
         idColumn.setCellValueFactory(new PropertyValueFactory<Box, Integer>("id"));
-        productColumn.setCellValueFactory(new PropertyValueFactory<Box, String>("product.description"));
+        productColumn.setCellValueFactory(new PropertyValueFactory<Box, Product>("product"));
         countColumn.setCellValueFactory(new PropertyValueFactory<Box, Integer>("count"));
 
         onRefresh();

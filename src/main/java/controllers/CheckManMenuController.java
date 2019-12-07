@@ -54,6 +54,20 @@ public class CheckManMenuController
     }
 
     @FXML
+    void onAddresses()
+    {
+        DTO.getInstance().getStageController().getPrimaryStage().setResizable(true);
+        DTO.getInstance().getStageController().setPrimaryScene(StageController.SceneType.CHECKMAN_ADDRESSES);
+    }
+
+    @FXML
+    void onWarehouse()
+    {
+        DTO.getInstance().getStageController().getPrimaryStage().setResizable(true);
+        DTO.getInstance().getStageController().setPrimaryScene(StageController.SceneType.CHECKMAN_WAREHOUSE);
+    }
+
+    @FXML
     void initialize()
     {
         back.setImage(new Image(getClass().getResource("/resources/images/back.png").toString()));

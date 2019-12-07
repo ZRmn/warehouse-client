@@ -131,6 +131,52 @@ public class TcpClient
         return Arrays.asList(JsonParser.objectFromJson(this.getResponse(), Box[].class));
     }
 
+    public boolean addOrder(Order order)
+    {
+        this.makeRequest("add-order?" + JsonParser.jsonFromObject(order));
+        return this.getResponse().equals("200");
+    }
+
+    public boolean editOrder(Order order)
+    {
+        this.makeRequest("edit-order?" + JsonParser.jsonFromObject(order));
+        return this.getResponse().equals("200");
+    }
+
+    public void deleteOrder(Order order)
+    {
+        this.makeRequest("delete-order?" + JsonParser.jsonFromObject(order));
+    }
+
+    public List<Order> getOrders()
+    {
+        this.makeRequest("get-orders");
+        return Arrays.asList(JsonParser.objectFromJson(this.getResponse(), Order[].class));
+    }
+
+    public boolean addAddress(Address address)
+    {
+        this.makeRequest("add-address?" + JsonParser.jsonFromObject(address));
+        return this.getResponse().equals("200");
+    }
+
+    public boolean editAddress(Address address)
+    {
+        this.makeRequest("edit-address?" + JsonParser.jsonFromObject(address));
+        return this.getResponse().equals("200");
+    }
+
+    public void deleteAddress(Address address)
+    {
+        this.makeRequest("delete-address?" + JsonParser.jsonFromObject(address));
+    }
+
+    public List<Address> getAddresses()
+    {
+        this.makeRequest("get-addresses");
+        return Arrays.asList(JsonParser.objectFromJson(this.getResponse(), Address[].class));
+    }
+
     private String getResponse()
     {
         String response = "";

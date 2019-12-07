@@ -3,6 +3,7 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -94,7 +95,7 @@ public class AdminUsersController
     @FXML
     void onEdit()
     {
-        if(table.getSelectionModel().getSelectedItems() != null)
+        if(!table.getSelectionModel().getSelectedItems().isEmpty())
         {
             SignUpController controller = new SignUpController(table.getSelectionModel().getSelectedItems().get(0));
             DTO.getInstance().getStageController().setModalScene(StageController.SceneType.ADMIN_USERS_ADD_EDIT, controller);
@@ -107,7 +108,7 @@ public class AdminUsersController
     @FXML
     void onDelete()
     {
-        if (table.getSelectionModel().getSelectedItems() != null)
+        if (!table.getSelectionModel().getSelectedItems().isEmpty())
         {
             List<Integer> indexes = new ArrayList<>(table.getSelectionModel().getSelectedIndices());
 
@@ -135,6 +136,7 @@ public class AdminUsersController
         users = FXCollections.observableArrayList();
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         table.setItems(users);
+        table.setPlaceholder(new Label("Нет пользователей"));
 
 
         idColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
