@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ComboBox fx:id="boxes" layoutX="29.0" layoutY="20.0" prefHeight="25.0" prefWidth="402.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="20.0" />
+      <TextField fx:id="count" layoutX="455.0" layoutY="20.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.rightAnchor="445.0" AnchorPane.topAnchor="20.0" />
+      <ComboBox fx:id="addresses" layoutX="687.0" layoutY="20.0" prefHeight="25.0" prefWidth="296.0" AnchorPane.topAnchor="20.0" />
+      <Button layoutX="450.0" layoutY="711.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="25.0" prefWidth="100.0" text="Оформить" AnchorPane.bottomAnchor="20.0" />
+      <Label fx:id="countRequired" layoutX="446.0" layoutY="20.0" text="*" textFill="RED" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="boxRequired" layoutX="10.0" layoutY="18.0" text="*" textFill="RED" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="addressRequired" layoutX="677.0" layoutY="20.0" text="*" textFill="RED" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ListView fx:id="basket" layoutX="320.0" layoutY="494.0" prefHeight="191.0" prefWidth="361.0" styleClass="customListView" />
+      <Button layoutX="320.0" layoutY="451.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="25.0" prefWidth="100.0" text="Добавить" />
+      <Button layoutX="581.0" layoutY="451.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="25.0" prefWidth="100.0" text="Удалить" />
+   </children>
+</AnchorPane>

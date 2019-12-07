@@ -1,8 +1,9 @@
 .root {
-    -fx-alignment: bottom;
-    -fx-background-color: linear-gradient(to top left, #6f969c, #d19ba4);
+    /*-fx-background-color: linear-gradient(to top left, #6f969c, #d19ba4);*/
     -fx-font-family: "Open Sans Condensed", sans-serif;
     -fx-font-size: 12;
+    -fx-background-color: linear-gradient(to top, #09203f 0%, #537895 100%);
+
 }
 
 
@@ -111,10 +112,32 @@
     -fx-background-color: rgba(255, 255, 255, 0);
 }
 
+.customListView
+{
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.customListView .list-cell
+{
+    -fx-background-color: rgba(255, 255, 255, 0);
+}
+
+.customListView .list-cell:selected
+{
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+}
+
 .list-cell:hover {
     -fx-background-color: rgba(255, 255, 255, 0.3);
     -fx-border-radius: 25px;
     -fx-background-radius: 25px;
+}
+
+.scroll-bar
+{
+    -fx-background-color: rgba(0,0,0,0);
 }
 
 

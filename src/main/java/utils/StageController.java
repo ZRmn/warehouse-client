@@ -15,8 +15,7 @@ public class StageController
         SIGN_UP, SIGN_IN, ADMIN_USERS, ADMIN_USERS_ADD_EDIT, CHECKMAN_MENU,
         CHECKMAN_PRODUCTS, CHECKMAN_PRODUCTS_ADD_EDIT, CHECKMAN_BOXES,
         CHECKMAN_BOXES_ADD_EDIT, CHECKMAN_PLACES, CHECKMAN_PLACES_ADD_EDIT,
-        CUSTOMER_MENU, CUSTOMER_ORDERS, CHECKMAN_ADDRESSES, CHECKMAN_ADDRESSES_ADD_EDIT,
-        CHECKMAN_WAREHOUSE
+        CUSTOMER_ORDERS, CUSTOMER_ORDERS_ADD, CHECKMAN_ADDRESSES, CHECKMAN_ADDRESSES_ADD_EDIT, CHECKMAN_WAREHOUSE_MAP
     }
 
     private Stage primaryStage;
@@ -183,13 +182,13 @@ public class StageController
 
             case CHECKMAN_PLACES:
             {
-                path += "checkman-places.fxml";
+//                path += "checkman-warehouse-map.fxml";
                 break;
             }
 
             case CHECKMAN_PLACES_ADD_EDIT:
             {
-                path += "checkman-places-add-edit.fxml";
+//                path += "checkman-places-add-edit.fxml";
                 break;
             }
 
@@ -205,9 +204,21 @@ public class StageController
                 break;
             }
 
-            case CHECKMAN_WAREHOUSE:
+            case CUSTOMER_ORDERS:
             {
-                path += "checkman-warehouse.fxml";
+                path += "customer-orders.fxml";
+                break;
+            }
+
+            case CUSTOMER_ORDERS_ADD:
+            {
+                path += "customer-orders-add.fxml";
+                break;
+            }
+
+            case CHECKMAN_WAREHOUSE_MAP:
+            {
+                path += "checkman-warehouse-map.fxml";
                 break;
             }
         }

@@ -12,7 +12,10 @@ public class StageController
 {
     public enum SceneType
     {
-        SIGN_UP, SIGN_IN, ADMIN_USERS, ADMIN_USERS_ADD_EDIT, CHECKMAN_MENU, CHECKMAN_PRODUCTS, CHECKMAN_PRODUCTS_ADD_EDIT, CHECKMAN_BOXES, CHECKMAN_BOXES_ADD_EDIT, CHECKMAN_PLACES, CHECKMAN_PLACES_ADD_EDIT
+        SIGN_UP, SIGN_IN, ADMIN_USERS, ADMIN_USERS_ADD_EDIT, CHECKMAN_MENU,
+        CHECKMAN_PRODUCTS, CHECKMAN_PRODUCTS_ADD_EDIT, CHECKMAN_BOXES,
+        CHECKMAN_BOXES_ADD_EDIT, CHECKMAN_PLACES, CHECKMAN_PLACES_ADD_EDIT,
+        CUSTOMER_ORDERS, CUSTOMER_ORDERS_ADD, CHECKMAN_ADDRESSES, CHECKMAN_ADDRESSES_ADD_EDIT, CHECKMAN_WAREHOUSE_MAP
     }
 
     private Stage primaryStage;
@@ -179,13 +182,43 @@ public class StageController
 
             case CHECKMAN_PLACES:
             {
-                path += "admin-places.fxml";
+//                path += "checkman-warehouse-map.fxml";
                 break;
             }
 
             case CHECKMAN_PLACES_ADD_EDIT:
             {
-                path += "admin-places-add-edit.fxml";
+//                path += "checkman-places-add-edit.fxml";
+                break;
+            }
+
+            case CHECKMAN_ADDRESSES:
+            {
+                path += "checkman-addresses.fxml";
+                break;
+            }
+
+            case CHECKMAN_ADDRESSES_ADD_EDIT:
+            {
+                path += "checkman-addresses-add-edit.fxml";
+                break;
+            }
+
+            case CUSTOMER_ORDERS:
+            {
+                path += "customer-orders.fxml";
+                break;
+            }
+
+            case CUSTOMER_ORDERS_ADD:
+            {
+                path += "customer-orders-add.fxml";
+                break;
+            }
+
+            case CHECKMAN_WAREHOUSE_MAP:
+            {
+                path += "checkman-warehouse-map.fxml";
                 break;
             }
         }

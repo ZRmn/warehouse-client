@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CheckManWarehouseMapController">
+   <children>
+      <TableView fx:id="table" layoutX="12.0" layoutY="14.0" prefHeight="329.0" prefWidth="576.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="65.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy></TableView>
+      <Button layoutX="20.0" layoutY="355.0" mnemonicParsing="false" onAction="#onAddColumn" prefHeight="25.0" prefWidth="120.0" text="Добавить ряд" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+      <ImageView fx:id="refresh" fitHeight="25.0" fitWidth="25.0" layoutX="555.0" layoutY="20.0" onMouseClicked="#onRefresh" onMouseEntered="#onRefreshHovered" onMouseExited="#onRefreshExited" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <ImageView fx:id="back" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#onBack" onMouseExited="#onBackExited" onMouseMoved="#onBackHovered" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <Button layoutX="158.0" layoutY="355.0" mnemonicParsing="false" onAction="#onAddRow" prefHeight="25.0" prefWidth="120.0" text="Добавить стеллаж" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="150.0" />
+      <Button layoutX="460.0" layoutY="355.0" mnemonicParsing="false" onAction="#onRemoveRow" prefHeight="25.0" prefWidth="120.0" text="Убрать стеллаж" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <Button layoutX="324.0" layoutY="355.0" mnemonicParsing="false" onAction="#onRemoveColumn" prefHeight="25.0" prefWidth="120.0" text="Убрать ряд" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="150.0" />
+   </children>
+</AnchorPane>

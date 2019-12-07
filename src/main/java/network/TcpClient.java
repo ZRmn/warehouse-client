@@ -177,6 +177,55 @@ public class TcpClient
         return Arrays.asList(JsonParser.objectFromJson(this.getResponse(), Address[].class));
     }
 
+    public boolean editWarehouseMap(WarehouseMap map)
+    {
+        this.makeRequest("edit-warehouse-map?" + JsonParser.jsonFromObject(map));
+        return this.getResponse().equals("200");
+    }
+
+    public WarehouseMap getWarehouseMap()
+    {
+        this.makeRequest("get-warehouse-map");
+        return JsonParser.objectFromJson(this.getResponse(), WarehouseMap.class);
+    }
+
+    public Place getPlace(String position)
+    {
+        this.makeRequest("get-place?" + position);
+        String response = this.getResponse();
+
+        if (!response.equals("400"))
+        {
+            return JsonParser.objectFromJson(response, Place.class);
+        }
+
+        return null;
+    }
+
+    public boolean addPlace(Place place)
+    {
+        this.makeRequest("add-place?" + JsonParser.jsonFromObject(place));
+        return this.getResponse().equals("200");
+    }
+
+    public boolean editPlace(Place place)
+    {
+        this.makeRequest("edit-place?" + JsonParser.jsonFromObject(place));
+        return this.getResponse().equals("200");
+    }
+
+    public void deletePlace(Place place)
+    {
+        this.makeRequest("delete-place?" + JsonParser.jsonFromObject(place));
+    }
+
+    public List<Place> getPlaces()
+    {
+        this.makeRequest("get-places");
+        return Arrays.asList(JsonParser.objectFromJson(this.getResponse(), Place[].class));
+    }
+
+
     private String getResponse()
     {
         String response = "";

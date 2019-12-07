@@ -10,9 +10,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CheckManMenuController">
    <children>
-      <Button layoutX="250.0" layoutY="146.0" mnemonicParsing="false" onAction="#onProducts" prefHeight="25.0" prefWidth="100.0" text="Продукты" />
-      <Button layoutX="250.0" layoutY="188.0" mnemonicParsing="false" onAction="#onBoxes" prefHeight="25.0" prefWidth="100.0" text="Коробки" />
-      <Button layoutX="250.0" layoutY="229.0" mnemonicParsing="false" onAction="#onPlaces" prefHeight="25.0" prefWidth="100.0" text="Стеллажи" />
+      <Button layoutX="175.0" layoutY="105.0" mnemonicParsing="false" onAction="#onProducts" prefHeight="25.0" prefWidth="250.0" text="Товары" />
+      <Button layoutX="175.0" layoutY="147.0" mnemonicParsing="false" onAction="#onBoxes" prefHeight="25.0" prefWidth="250.0" text="Коробки" />
+      <Button layoutX="175.0" layoutY="188.0" mnemonicParsing="false" onAction="#onPlaces" prefHeight="25.0" prefWidth="250.0" text="Стеллажи" />
+      <Button layoutX="175.0" layoutY="229.0" mnemonicParsing="false" onAction="#onAddresses" prefHeight="25.0" prefWidth="250.0" text="Адреса" />
+      <Button layoutX="175.0" layoutY="270.0" mnemonicParsing="false" onAction="#onWarehouse" prefHeight="25.0" prefWidth="250.0" text="Склад" />
       <ImageView fx:id="back" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#onBack" onMouseExited="#onBackExited" onMouseMoved="#onBackHovered" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
    </children>
 </AnchorPane>

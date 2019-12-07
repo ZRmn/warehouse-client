@@ -84,25 +84,25 @@ public class SignUpController
         {
             case "Администратор":
             {
-                user = new Admin(login.getText(), MD5.encode(password.getText()), fullName.getText());
+                user = new Admin(0, login.getText(), MD5.encode(password.getText()), fullName.getText());
                 break;
             }
 
             case "Учетчик":
             {
-                user = new CheckMan(login.getText(), MD5.encode(password.getText()), fullName.getText());
+                user = new CheckMan(0, login.getText(), MD5.encode(password.getText()), fullName.getText());
                 break;
             }
 
             case "Заказчик":
             {
-                user = new Customer(login.getText(), MD5.encode(password.getText()), fullName.getText());
+                user = new Customer(0, login.getText(), MD5.encode(password.getText()), fullName.getText());
                 break;
             }
 
             default:
             {
-                user = new StockMan(login.getText(), MD5.encode(password.getText()), fullName.getText());
+                user = new StockMan(0, login.getText(), MD5.encode(password.getText()), fullName.getText());
             }
         }
 

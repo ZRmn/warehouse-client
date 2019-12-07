@@ -53,4 +53,11 @@ public class Box
     {
         this.product = product;
     }
+
+
+    @Override
+    public String toString()
+    {
+        return product.getDescription() + " --- " + count + " шт";
+    }
 }

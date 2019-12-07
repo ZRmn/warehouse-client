@@ -64,7 +64,7 @@ public class CheckManMenuController
     void onWarehouse()
     {
         DTO.getInstance().getStageController().getPrimaryStage().setResizable(true);
-        DTO.getInstance().getStageController().setPrimaryScene(StageController.SceneType.CHECKMAN_WAREHOUSE);
+        DTO.getInstance().getStageController().setPrimaryScene(StageController.SceneType.CHECKMAN_WAREHOUSE_MAP);
     }
 
     @FXML

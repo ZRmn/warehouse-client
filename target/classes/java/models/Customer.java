@@ -1,5 +1,8 @@
 package models;
 
+import utils.DTO;
+import utils.StageController;
+
 public class Customer extends User
 {
     public Customer()
@@ -20,6 +23,7 @@ public class Customer extends User
     @Override
     public void enter()
     {
-
+        DTO.getInstance().getStageController().getPrimaryStage().setResizable(true);
+        DTO.getInstance().getStageController().setPrimaryScene(StageController.SceneType.CUSTOMER_ORDERS);
     }
 }

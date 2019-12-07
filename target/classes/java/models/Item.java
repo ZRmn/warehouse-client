@@ -34,4 +34,10 @@ public class Item
     {
         this.count = count;
     }
+
+    @Override
+    public String toString()
+    {
+        return box.getProduct().getDescription() + " --- " + count + " кор";
+    }
 }
