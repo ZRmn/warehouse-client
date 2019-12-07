@@ -12,7 +12,7 @@ public class StageController
 {
     public enum SceneType
     {
-        MAIN, SIGN_UP, SIGN_IN
+        SIGN_UP, SIGN_IN, ADMIN_USERS, ADMIN_USERS_ADD_EDIT, CHECKMAN_MENU, CHECKMAN_PRODUCTS, CHECKMAN_PRODUCTS_ADD_EDIT, CHECKMAN_BOXES, CHECKMAN_BOXES_ADD_EDIT, CHECKMAN_PLACES, CHECKMAN_PLACES_ADD_EDIT
     }
 
     private Stage primaryStage;
@@ -110,7 +110,7 @@ public class StageController
             loader.setController(controller);
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add(0, "/resources/styles/style.css");
-            primaryStage.setScene(scene);
+            modalStage.setScene(scene);
         }
         catch (IOException e)
         {
@@ -124,19 +124,68 @@ public class StageController
 
         switch (type)
         {
-            case MAIN:
-            {
-                path += "main.fxml";
-                break;
-            }
             case SIGN_IN:
             {
-                path += "signin.fxml";
+                path += "sign-in.fxml";
                 break;
             }
             case SIGN_UP:
             {
-                path += "signup.fxml";
+                path += "sign-up.fxml";
+                break;
+            }
+
+            case ADMIN_USERS:
+            {
+                path += "admin-users.fxml";
+                break;
+            }
+
+            case ADMIN_USERS_ADD_EDIT:
+            {
+                path += "admin-users-add-edit.fxml";
+                break;
+            }
+
+            case CHECKMAN_MENU:
+            {
+                path += "checkman-menu.fxml";
+                break;
+            }
+
+            case CHECKMAN_PRODUCTS:
+            {
+                path += "checkman-products.fxml";
+                break;
+            }
+
+            case CHECKMAN_PRODUCTS_ADD_EDIT:
+            {
+                path += "checkman-products-add-edit.fxml";
+                break;
+            }
+
+            case CHECKMAN_BOXES:
+            {
+                path += "checkman-boxes.fxml";
+                break;
+            }
+
+            case CHECKMAN_BOXES_ADD_EDIT:
+            {
+                path += "checkman-boxes-add-edit.fxml";
+                break;
+            }
+
+            case CHECKMAN_PLACES:
+            {
+                path += "admin-places.fxml";
+                break;
+            }
+
+            case CHECKMAN_PLACES_ADD_EDIT:
+            {
+                path += "admin-places-add-edit.fxml";
                 break;
             }
         }

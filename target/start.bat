@@ -1,0 +1,1 @@
+java -jar warehouse-client-jar-with-dependencies.jar

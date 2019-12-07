@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zrmn</groupId>
-    <artifactId>warehouse-tcpClient</artifactId>
+    <artifactId>warehouse-client</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
@@ -46,7 +46,7 @@
 
     <build>
 
-        <finalName>warehouse-tcpClient</finalName>       <!--file name-->
+        <finalName>warehouse-client</finalName>       <!--file name-->
 
         <resources>
 

@@ -1,5 +1,6 @@
 package utils;
 
+import models.User;
 import network.TcpClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -8,19 +9,17 @@ public class DTO
 {
     private String host;
     private int port;
+    private User user;
     private TcpClient client;
     private StageController stageController;
 
     private static DTO dto;
 
-    public static DTO getInstance()
+    public synchronized static DTO getInstance()
     {
-        synchronized (DTO.class)
+        if (dto == null)
         {
-            if (dto == null)
-            {
-                dto = new DTO();
-            }
+            dto = new DTO();
         }
 
         return dto;
@@ -51,6 +50,16 @@ public class DTO
     public void setPort(int port)
     {
         this.port = port;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
     }
 
     public TcpClient getClient()

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="340.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="login" alignment="CENTER" layoutX="180.0" layoutY="22.0" maxHeight="25.0" maxWidth="250.0" minHeight="25.0" minWidth="250.0" prefHeight="25.0" prefWidth="250.0" promptText="Логин" />
+      <PasswordField fx:id="password" alignment="CENTER" layoutX="180.0" layoutY="64.0" maxHeight="25.0" maxWidth="250.0" minHeight="25.0" minWidth="250.0" prefHeight="25.0" prefWidth="250.0" promptText="Пароль" />
+      <TextField fx:id="fullName" alignment="CENTER" layoutX="181.0" layoutY="107.0" maxHeight="25.0" maxWidth="250.0" minHeight="25.0" minWidth="250.0" prefHeight="25.0" prefWidth="250.0" promptText="ФИО" />
+      <ComboBox fx:id="roles" layoutX="181.0" layoutY="149.0" prefWidth="250.0" promptText="Роль" />
+      <Button fx:id="submit" layoutX="231.0" layoutY="300.0" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="25.0" prefWidth="150.0" text="Зарегистрировать" AnchorPane.bottomAnchor="20.0" />
+      <Label fx:id="loginTaken" layoutX="260.0" layoutY="46.0" text="Логин уже занят" textFill="RED" />
+      <Label fx:id="loginRequired" layoutX="170.0" layoutY="22.0" text="*" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="passwordRequired" layoutX="170.0" layoutY="64.0" text="*" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="fullNameRequired" layoutX="170.0" layoutY="140.0" text="*" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

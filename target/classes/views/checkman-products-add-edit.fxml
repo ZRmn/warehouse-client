@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="188.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea fx:id="description" layoutX="150.0" layoutY="14.0" prefHeight="100.0" prefWidth="300.0" promptText="Описание товара" AnchorPane.topAnchor="20.0" />
+      <Label fx:id="descriptionRequired" layoutX="135.0" layoutY="14.0" text="*" textFill="RED" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="submit" layoutX="225.0" layoutY="149.0" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="25.0" prefWidth="150.0" text="Добавить" AnchorPane.bottomAnchor="20.0" />
+   </children>
+</AnchorPane>

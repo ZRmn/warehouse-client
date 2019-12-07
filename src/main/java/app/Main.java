@@ -39,7 +39,16 @@ public class Main extends Application
 
         System.out.println("Successfully connected");
 
-        dto.getStageController().setPrimaryScene(StageController.SceneType.MAIN);
+        if(dto.getClient().hasAdmin())
+        {
+            dto.getStageController().setPrimaryScene(StageController.SceneType.SIGN_IN);
+        }
+        else
+        {
+            dto.getStageController().setPrimaryScene(StageController.SceneType.SIGN_UP);
+        }
+
+        dto.getStageController().getPrimaryStage().setResizable(false);
         dto.getStageController().getPrimaryStage().setOnCloseRequest(windowEvent -> dto.getClient().disconnect());
         dto.getStageController().showPrimary();
     }

@@ -1,9 +1,15 @@
 package network;
 
+import models.*;
+import utils.JsonParser;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class TcpClient
 {
@@ -20,20 +26,13 @@ public class TcpClient
         this.port = port;
     }
 
-    public void connect()
+    public void connect() throws IOException
     {
-        try
-        {
-            socket = new Socket(host, port);
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
+        socket = new Socket(host, port);
+        in = new DataInputStream(socket.getInputStream());
+        out = new DataOutputStream(socket.getOutputStream());
 
-            this.makeRequest("connect?" + socket.getInetAddress().getHostAddress());
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        this.makeRequest("connect?" + socket.getInetAddress().getHostAddress());
     }
 
     public void disconnect()
@@ -50,18 +49,102 @@ public class TcpClient
         }
     }
 
+    public boolean hasAdmin()
+    {
+        this.makeRequest("has-admin");
+        return this.getResponse().equals("200");
+    }
+
+    public User authoriseUser(String login, String password)
+    {
+        this.makeRequest("authorise-user?" + login + "&" + password);
+        String response = this.getResponse();
+        return response.equals("400") ? null : JsonParser.objectFromJson(response, User.class);
+    }
+
+    public boolean addUser(User user)
+    {
+        this.makeRequest("add-user?" + JsonParser.jsonFromObject(user));
+        return this.getResponse().equals("200");
+    }
+
+    public boolean editUser(User user)
+    {
+        this.makeRequest("edit-user?" + JsonParser.jsonFromObject(user));
+        return this.getResponse().equals("200");
+    }
+
+    public void deleteUser(User user)
+    {
+        this.makeRequest("delete-user?" + JsonParser.jsonFromObject(user));
+    }
+
+    public List<User> getUsers()
+    {
+        this.makeRequest("get-users");
+        return Arrays.asList(JsonParser.objectFromJson(this.getResponse(), User[].class));
+    }
+
+    public boolean addProduct(Product product)
+    {
+        this.makeRequest("add-product?" + JsonParser.jsonFromObject(product));
+        return this.getResponse().equals("200");
+    }
+
+    public boolean editProduct(Product product)
+    {
+        this.makeRequest("edit-product?" + JsonParser.jsonFromObject(product));
+        return this.getResponse().equals("200");
+    }
+
+    public void deleteProduct(Product product)
+    {
+        this.makeRequest("delete-product?" + JsonParser.jsonFromObject(product));
+    }
+
+    public List<Product> getProducts()
+    {
+        this.makeRequest("get-products");
+        return Arrays.asList(JsonParser.objectFromJson(this.getResponse(), Product[].class));
+    }
+
+    public boolean addBox(Box box)
+    {
+        this.makeRequest("add-box?" + JsonParser.jsonFromObject(box));
+        return this.getResponse().equals("200");
+    }
+
+    public boolean editBox(Box box)
+    {
+        this.makeRequest("edit-box?" + JsonParser.jsonFromObject(box));
+        return this.getResponse().equals("200");
+    }
+
+    public void deleteBox(Box box)
+    {
+        this.makeRequest("delete-box?" + JsonParser.jsonFromObject(box));
+    }
+
+    public List<Box> getBoxes()
+    {
+        this.makeRequest("get-boxes");
+        return Arrays.asList(JsonParser.objectFromJson(this.getResponse(), Box[].class));
+    }
+
     private String getResponse()
     {
+        String response = "";
+
         try
         {
-            return in.readUTF();
+            response = in.readUTF();
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
 
-        return null;
+        return response;
     }
 
     private void makeRequest(String query)
