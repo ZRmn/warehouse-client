@@ -1,19 +1,12 @@
 package controllers;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Callback;
 import models.*;
 import utils.DTO;
 import utils.StageController;
@@ -71,18 +64,18 @@ public class CheckManWarehouseMapController
 
         List<Place> places = DTO.getInstance().getClient().getPlaces();
 
-        for(Place place : places)
+        for (Place place : places)
         {
             String[] temp = place.getPosition().split(":");
             int columns = Integer.parseInt(temp[0]);
             int rows = Integer.parseInt(temp[1]);
 
-            if(columns > map.getColumns() || rows > map.getRows())
+            if (columns > map.getColumns() || rows > map.getRows())
             {
                 continue;
             }
 
-            warehouseMap.get(rows - 1).set(columns, ((place.getFullness() / (float) place.getCapacity()) * 100) + "%");
+            warehouseMap.get(rows - 1).set(columns, String.format ("%.0f", (place.getFullness() / (float) place.getCapacity()) * 100) + "%");
         }
 
         table.setItems(warehouseMap);
@@ -130,6 +123,8 @@ public class CheckManWarehouseMapController
         WarehouseMap map = DTO.getInstance().getClient().getWarehouseMap();
         map.setColumns(map.getColumns() + 1);
         DTO.getInstance().getClient().editWarehouseMap(map);
+
+        onRefresh();
     }
 
     @FXML
@@ -138,6 +133,8 @@ public class CheckManWarehouseMapController
         WarehouseMap map = DTO.getInstance().getClient().getWarehouseMap();
         map.setRows(map.getRows() + 1);
         DTO.getInstance().getClient().editWarehouseMap(map);
+
+        onRefresh();
     }
 
     @FXML
@@ -145,10 +142,12 @@ public class CheckManWarehouseMapController
     {
         WarehouseMap map = DTO.getInstance().getClient().getWarehouseMap();
 
-        if(map.getColumns() > 1)
+        if (map.getColumns() > 1)
         {
             map.setColumns(map.getColumns() - 1);
             DTO.getInstance().getClient().editWarehouseMap(map);
+
+            onRefresh();
         }
     }
 
@@ -157,10 +156,12 @@ public class CheckManWarehouseMapController
     {
         WarehouseMap map = DTO.getInstance().getClient().getWarehouseMap();
 
-        if(map.getRows() > 1)
+        if (map.getRows() > 1)
         {
             map.setRows(map.getRows() - 1);
             DTO.getInstance().getClient().editWarehouseMap(map);
+
+            onRefresh();
         }
     }
 
@@ -169,6 +170,28 @@ public class CheckManWarehouseMapController
     {
         refresh.setImage(new Image(getClass().getResource("/resources/images/refresh.png").toString()));
         back.setImage(new Image(getClass().getResource("/resources/images/back.png").toString()));
+
+        table.setOnMouseClicked(mouseEvent ->
+        {
+            if (mouseEvent.getClickCount() == 2)
+            {
+                TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
+                int row = pos.getRow() + 1;
+                int column = pos.getColumn();
+
+                Place place = DTO.getInstance().getClient().getPlace(column + ":" + row);
+
+                if(place == null || place.getPallets().isEmpty())
+                {
+                    return;
+                }
+
+                CheckManWarehouseMapPalletsController controller = new CheckManWarehouseMapPalletsController(place);
+                DTO.getInstance().getStageController().setModalScene(StageController.SceneType.CHECKMAN_WAREHOUSE_MAP_PALLETS,
+                        controller);
+                DTO.getInstance().getStageController().showModal();
+            }
+        });
 
         warehouseMap = FXCollections.observableArrayList();
         table.getSelectionModel().setCellSelectionEnabled(true);

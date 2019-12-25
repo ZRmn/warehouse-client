@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Box
 {
     private Integer id;
@@ -59,5 +61,20 @@ public class Box
     public String toString()
     {
         return product.getDescription() + " --- " + count + " шт";
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass())
+        {
+            return false;
+        }
+        Box box = (Box) o;
+        return Objects.equals(count, box.count) && Objects.equals(product, box.product);
     }
 }

@@ -40,6 +40,11 @@ public class SignUpController
     @FXML
     private Label loginTaken;
 
+    public SignUpController()
+    {
+
+    }
+
     public SignUpController(User user)
     {
         this.user = user;

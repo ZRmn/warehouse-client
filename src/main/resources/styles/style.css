@@ -94,6 +94,12 @@
     -fx-border-color: white;
 }
 
+.table-cell:selected
+{
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-border-color: white;
+}
+
 .combo-box:focused
 {
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 15, 0.5, 0, 0);

@@ -68,6 +68,14 @@ public class CheckManMenuController
     }
 
     @FXML
+    void onGraphic()
+    {
+        DTO.getInstance().getStageController().getPrimaryStage().setResizable(true);
+        DTO.getInstance().getStageController().setPrimaryScene(StageController.SceneType.GRAPHIC);
+
+    }
+
+    @FXML
     void initialize()
     {
         back.setImage(new Image(getClass().getResource("/resources/images/back.png").toString()));

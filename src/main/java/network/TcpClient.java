@@ -219,6 +219,11 @@ public class TcpClient
         this.makeRequest("delete-place?" + JsonParser.jsonFromObject(place));
     }
 
+    public void setPlaceCapacity(Integer capacity)
+    {
+        this.makeRequest("set-place-capacity?" + JsonParser.jsonFromObject(capacity));
+    }
+
     public List<Place> getPlaces()
     {
         this.makeRequest("get-places");

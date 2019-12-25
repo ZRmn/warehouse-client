@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StockManMenuController">
+   <children>
+      <Button layoutX="200.0" layoutY="188.0" mnemonicParsing="false" onAction="#onGet" prefHeight="25.0" prefWidth="200.0" text="Получить лист отбора" />
+      <Label fx:id="successLabel" alignment="CENTER" layoutX="150.0" layoutY="171.0" prefHeight="17.0" prefWidth="300.0" text="Лист готов" textFill="#2ad32a" />
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="150.0" layoutY="213.0" prefHeight="17.0" prefWidth="300.0" text="Нет заказов" textFill="RED" />
+      <ImageView fx:id="back" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="14.0" onMouseClicked="#onBack" onMouseExited="#onBackExited" onMouseMoved="#onBackHovered" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

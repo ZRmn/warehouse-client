@@ -1,5 +1,8 @@
 package models;
 
+import utils.DTO;
+import utils.StageController;
+
 public class StockMan extends User
 {
     public StockMan()
@@ -20,6 +23,7 @@ public class StockMan extends User
     @Override
     public void enter()
     {
-
+        DTO.getInstance().getStageController().getPrimaryStage().setResizable(false);
+        DTO.getInstance().getStageController().setPrimaryScene(StageController.SceneType.STOCKMAN_MENU);
     }
 }
